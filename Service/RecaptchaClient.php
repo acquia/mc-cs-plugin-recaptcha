@@ -9,12 +9,11 @@
 namespace MauticPlugin\MauticRecaptchaBundle\Service;
 
 use GuzzleHttp\Client as GuzzleClient;
-use Mautic\CoreBundle\EventListener\CommonSubscriber;
 use Mautic\PluginBundle\Helper\IntegrationHelper;
 use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 use Mautic\PluginBundle\Integration\AbstractIntegration;
 
-class RecaptchaClient extends CommonSubscriber
+class RecaptchaClient
 {
     const VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
 
@@ -42,14 +41,6 @@ class RecaptchaClient extends CommonSubscriber
             $this->siteKey   = isset($keys['site_key']) ? $keys['site_key'] : null;
             $this->secretKey = isset($keys['secret_key']) ? $keys['secret_key'] : null;
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getSubscribedEvents()
-    {
-        return [];
     }
 
 

@@ -24,13 +24,8 @@ return [
                     'event_dispatcher',
                     'mautic.helper.integration',
                     'mautic.model.factory',
-                    'mautic.recaptcha.service.recaptcha_client'
-                ],
-            ],
-            'mautic.recaptcha.service.recaptcha_client' => [
-                'class'     => \MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient::class,
-                'arguments' => [
-                    'mautic.helper.integration',
+                    'mautic.recaptcha.service.recaptcha_client',
+                    'translator',
                 ],
             ],
         ],
@@ -42,6 +37,14 @@ return [
         ],
         'models' => [
 
+        ],
+        'helpers' => [
+            'mautic.recaptcha.service.recaptcha_client' => [
+                'class'     => \MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient::class,
+                'arguments' => [
+                    'mautic.helper.integration',
+                ],
+            ],
         ],
         'integrations' => [
             'mautic.integration.recaptcha' => [
