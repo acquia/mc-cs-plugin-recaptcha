@@ -14,44 +14,44 @@ use Mautic\PluginBundle\Helper\IntegrationHelper;
 use MauticPlugin\MauticRecaptchaBundle\EventListener\FormSubscriber;
 use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 use MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient;
-use PHPUnit_Framework_MockObject_MockBuilder;
+use PHPUnit\Framework\MockObject\MockBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Mautic\FormBundle\Event\FormBuilderEvent;
 
-class FormSubscriberTest extends \PHPUnit_Framework_TestCase
+class FormSubscriberTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var PHPUnit_Framework_MockObject_MockBuilder|RecaptchaIntegration
+     * @var PHPUnit\Framework\MockObject\MockBuilder|RecaptchaIntegration
      */
     private $integration;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockBuilder|EventDispatcherInterface
+     * @var PHPUnit\Framework\MockObject\MockBuilder|EventDispatcherInterface
      */
     private $eventDispatcher;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockBuilder|IntegrationHelper
+     * @var PHPUnit\Framework\MockObject\MockBuilder|IntegrationHelper
      */
     private $integrationHelper;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockBuilder|ModelFactory
+     * @var PHPUnit\Framework\MockObject\MockBuilder|ModelFactory
      */
     private $modelFactory;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockBuilder|RecaptchaClient
+     * @var PHPUnit\Framework\MockObject\MockBuilder|RecaptchaClient
      */
     private $recaptchaClient;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockBuilder|ValidationEvent
+     * @var PHPUnit\Framework\MockObject\MockBuilder|ValidationEvent
      */
     private $validationEvent;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockBuilder|FormBuilderEvent
+     * @var PHPUnit\Framework\MockObject\MockBuilder|FormBuilderEvent
      */
     private $formBuildEvent;
 

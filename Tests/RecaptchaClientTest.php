@@ -8,20 +8,20 @@
 
 namespace MauticPlugin\MauticRecaptchaBundle\Tests;
 
-use PHPUnit_Framework_MockObject_MockBuilder;
+use PHPUnit\Framework\MockObject\MockBuilder;
 use Mautic\PluginBundle\Helper\IntegrationHelper;
 use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 use MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient;
 
-class RecaptchaClientTest extends \PHPUnit_Framework_TestCase
+class RecaptchaClientTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var PHPUnit_Framework_MockObject_MockBuilder|IntegrationHelper
+     * @var PHPUnit\Framework\MockObject\MockBuilder|IntegrationHelper
      */
     private $integrationHelper;
 
     /**
-     * @var PHPUnit_Framework_MockObject_MockBuilder|RecaptchaIntegration
+     * @var PHPUnit\Framework\MockObject\MockBuilder|RecaptchaIntegration
      */
     private $integration;
 
