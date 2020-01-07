@@ -14,7 +14,6 @@ use Mautic\PluginBundle\Helper\IntegrationHelper;
 use MauticPlugin\MauticRecaptchaBundle\EventListener\FormSubscriber;
 use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 use MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient;
-use PHPUnit\Framework\MockObject\MockBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Mautic\FormBundle\Event\FormBuilderEvent;
 
