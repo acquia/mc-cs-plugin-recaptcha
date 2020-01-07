@@ -14,45 +14,53 @@ use Mautic\PluginBundle\Helper\IntegrationHelper;
 use MauticPlugin\MauticRecaptchaBundle\EventListener\FormSubscriber;
 use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 use MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient;
+use PHPUnit\Framework\MockObject\MockBuilder;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Mautic\FormBundle\Event\FormBuilderEvent;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class FormSubscriberTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var PHPUnit\Framework\MockObject\MockBuilder|RecaptchaIntegration
+     * @var MockBuilder|RecaptchaIntegration
      */
     private $integration;
 
     /**
-     * @var PHPUnit\Framework\MockObject\MockBuilder|EventDispatcherInterface
+     * @var MockBuilder|EventDispatcherInterface
      */
     private $eventDispatcher;
 
     /**
-     * @var PHPUnit\Framework\MockObject\MockBuilder|IntegrationHelper
+     * @var MockBuilder|IntegrationHelper
      */
     private $integrationHelper;
 
     /**
-     * @var PHPUnit\Framework\MockObject\MockBuilder|ModelFactory
+     * @var MockBuilder|ModelFactory
      */
     private $modelFactory;
 
     /**
-     * @var PHPUnit\Framework\MockObject\MockBuilder|RecaptchaClient
+     * @var MockBuilder|RecaptchaClient
      */
     private $recaptchaClient;
 
     /**
-     * @var PHPUnit\Framework\MockObject\MockBuilder|ValidationEvent
+     * @var MockBuilder|ValidationEvent
      */
     private $validationEvent;
 
     /**
-     * @var PHPUnit\Framework\MockObject\MockBuilder|FormBuilderEvent
+     * @var MockBuilder|FormBuilderEvent
      */
     private $formBuildEvent;
+
+    /**
+     * @var MockObject|TranslatorInterface
+     */
+    private $translatorMock;
 
     protected function setUp()
     {
@@ -65,6 +73,7 @@ class FormSubscriberTest extends \PHPUnit\Framework\TestCase
         $this->recaptchaClient   = $this->createMock(RecaptchaClient::class);
         $this->validationEvent   = $this->createMock(ValidationEvent::class);
         $this->formBuildEvent    = $this->createMock(FormBuilderEvent::class);
+        $this->translatorMock    = $this->createMock(TranslatorInterface::class);
 
         $this->eventDispatcher
             ->method('addListener')
@@ -179,7 +188,8 @@ class FormSubscriberTest extends \PHPUnit\Framework\TestCase
             $this->eventDispatcher,
             $this->integrationHelper,
             $this->modelFactory,
-            $this->recaptchaClient
+            $this->recaptchaClient,
+            $this->translatorMock
         );
     }
 }
