@@ -16,6 +16,7 @@ use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 use MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient;
 use PHPUnit\Framework\MockObject\MockBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class IntegrationTest extends \PHPUnit\Framework\TestCase
 {
@@ -90,7 +91,8 @@ class IntegrationTest extends \PHPUnit\Framework\TestCase
             $this->eventDispatcher,
             $this->integrationHelper,
             $modelFactory,
-            new RecaptchaClient($this->integrationHelper)
+            new RecaptchaClient($this->integrationHelper),
+            $this->createMock(TranslatorInterface::class),
         );
         $formSubscriber->onFormValidate($validationEvent);
     }
