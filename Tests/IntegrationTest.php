@@ -92,7 +92,7 @@ class IntegrationTest extends \PHPUnit\Framework\TestCase
             $this->integrationHelper,
             $modelFactory,
             new RecaptchaClient($this->integrationHelper),
-            $this->createMock(TranslatorInterface::class),
+            $this->createMock(TranslatorInterface::class)
         );
         $formSubscriber->onFormValidate($validationEvent);
     }
