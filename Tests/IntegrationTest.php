@@ -39,7 +39,7 @@ class IntegrationTest extends \PHPUnit\Framework\TestCase
      */
     protected $eventDispatcher;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

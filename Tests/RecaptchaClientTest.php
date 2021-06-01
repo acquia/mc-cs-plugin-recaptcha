@@ -25,7 +25,7 @@ class RecaptchaClientTest extends \PHPUnit\Framework\TestCase
      */
     private $integration;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
