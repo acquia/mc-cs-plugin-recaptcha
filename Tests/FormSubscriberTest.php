@@ -62,7 +62,7 @@ class FormSubscriberTest extends \PHPUnit\Framework\TestCase
      */
     private $translatorMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
