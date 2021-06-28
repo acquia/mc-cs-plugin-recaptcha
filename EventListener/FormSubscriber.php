@@ -140,7 +140,7 @@ class FormSubscriber implements EventSubscriberInterface
         $event->failedValidation($this->translator === null ? 'reCAPTCHA was not successful.' : $this->translator->trans('mautic.integration.recaptcha.failure_message'));
 
         $this->eventDispatcher->addListener(LeadEvents::LEAD_POST_SAVE, function (LeadEvent $event) {
-            if ($event->isNew()){
+            if ($event->isNew()) {
                 /** @var LeadModel $model */
                 $model = $this->modelFactory->getModel(self::MODEL_NAME_KEY_LEAD);
                 $model->deleteEntity($event->getLead());

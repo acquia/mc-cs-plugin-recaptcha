@@ -64,62 +64,62 @@ pipeline {
         }
       }
     }
-    // stage('Tests') {
-    //   parallel {
-    //     stage('PHPUNIT') {
-    //       environment {
-    //         COVERALLS_REPO_TOKEN = credentials('COVERALLS_REPO_TOKEN')
-    //         CI_PULL_REQUEST = "${env.CHANGE_ID}"
-    //         CI_BRANCH = "${env.BRANCH_NAME}"
-    //         CI_BUILD_URL = "${env.BUILD_URL}"
-    //       }   
-    //       steps {
-    //         container('mautic-tester') {
-    //           ansiColor('xterm') {
-    //             sh '''
-    //               echo "PHP Version Info"
-    //               php --version
-    //               mysql -h 127.0.0.1 -e 'CREATE DATABASE mautictest; CREATE USER travis@"%"; GRANT ALL on mautictest.* to travis@"%"; GRANT SUPER,PROCESS ON *.* TO travis@"%";'
-    //               export SYMFONY_ENV="test"
-    //               mkdir -p var/cache/coverage-report
-    //               # pcov-clobber needs to be used until we upgrade to phpunit 8
-    //               bin/pcov clobber
-    //               # APP_DEBUG=0 disables debug mode for functional test clients decreasing memory usage to almost half
-    //               APP_DEBUG=0 bin/phpunit -d pcov.enabled=1 -d memory_limit=3G --bootstrap vendor/autoload.php --configuration plugins/${SUBMODULE_NAME}/phpunit.xml --fail-on-warning  --disallow-test-output --coverage-clover var/cache/coverage-report/clover.xml --testsuite=all
-    //               php-coveralls -x var/cache/coverage-report/clover.xml --json_path var/cache/coverage-report/coveralls-upload.json
-    //             '''
-    //           }
-    //         }
-    //       }
-    //     }
-    //     stage('Static Analysis') {
-    //       steps {
-    //         container('mautic-tester') {
-    //           ansiColor('xterm') {
-    //             dir("plugins/${env.SUBMODULE_NAME}") {
-    //               sh '''
-    //                 composer run-script phpstan
-    //               '''
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //     stage('Styling') {
-    //       steps {
-    //         container('mautic-tester') {
-    //           ansiColor('xterm') {
-    //             dir("plugins/${env.SUBMODULE_NAME}") {
-    //               sh '''
-    //                 vendor/bin/ecs check .
-    //               '''
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+    stage('Tests') {
+      parallel {
+        stage('PHPUNIT') {
+          environment {
+            COVERALLS_REPO_TOKEN = credentials('COVERALLS_REPO_TOKEN')
+            CI_PULL_REQUEST = "${env.CHANGE_ID}"
+            CI_BRANCH = "${env.BRANCH_NAME}"
+            CI_BUILD_URL = "${env.BUILD_URL}"
+          }
+          steps {
+            container('mautic-tester') {
+              ansiColor('xterm') {
+                sh '''
+                  echo "PHP Version Info"
+                  php --version
+                  mysql -h 127.0.0.1 -e 'CREATE DATABASE mautictest; CREATE USER travis@"%"; GRANT ALL on mautictest.* to travis@"%"; GRANT SUPER,PROCESS ON *.* TO travis@"%";'
+                  export SYMFONY_ENV="test"
+                  mkdir -p var/cache/coverage-report
+                  # pcov-clobber needs to be used until we upgrade to phpunit 8
+                  # bin/pcov clobber
+                  # APP_DEBUG=0 disables debug mode for functional test clients decreasing memory usage to almost half
+                  APP_DEBUG=0 bin/phpunit -d pcov.enabled=1 -d memory_limit=3G --bootstrap vendor/autoload.php --configuration plugins/${SUBMODULE_NAME}/phpunit.xml --fail-on-warning  --disallow-test-output --coverage-clover var/cache/coverage-report/clover.xml --testsuite=all
+                  php-coveralls -x var/cache/coverage-report/clover.xml --json_path var/cache/coverage-report/coveralls-upload.json
+                '''
+              }
+            }
+          }
+        }
+//         stage('Static Analysis') {
+//           steps {
+//             container('mautic-tester') {
+//               ansiColor('xterm') {
+//                 dir("plugins/${env.SUBMODULE_NAME}") {
+//                   sh '''
+//                     composer run-script phpstan
+//                   '''
+//                 }
+//               }
+//             }
+//           }
+//         }
+        stage('CS Fixer') {
+          steps {
+            container('mautic-tester') {
+              ansiColor('xterm') {
+                dir("plugins/${env.SUBMODULE_NAME}") {
+                  sh '''
+                    composer csfixer
+                  '''
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     stage('Automerge') {
       when {
         anyOf {
