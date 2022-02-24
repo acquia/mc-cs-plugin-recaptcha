@@ -20,7 +20,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class IntegrationTest extends \PHPUnit\Framework\TestCase
 {
-    const RECAPTCHA_TESTING_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+    const RECAPTCHA_TESTING_SITE_KEY   = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
     const RECAPTCHA_TESTING_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
 
     /**
@@ -56,7 +56,6 @@ class IntegrationTest extends \PHPUnit\Framework\TestCase
         $this->eventDispatcher
             ->method('addListener')
             ->willReturn(true);
-
 
         $this->integrationHelper = $this->getMockBuilder(IntegrationHelper::class)
             ->disableOriginalConstructor()

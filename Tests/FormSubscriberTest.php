@@ -9,6 +9,7 @@
 namespace MauticPlugin\MauticRecaptchaBundle\Tests;
 
 use Mautic\CoreBundle\Factory\ModelFactory;
+use Mautic\FormBundle\Event\FormBuilderEvent;
 use Mautic\FormBundle\Event\ValidationEvent;
 use Mautic\PluginBundle\Helper\IntegrationHelper;
 use MauticPlugin\MauticRecaptchaBundle\EventListener\FormSubscriber;
@@ -17,7 +18,6 @@ use MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient;
 use PHPUnit\Framework\MockObject\MockBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Mautic\FormBundle\Event\FormBuilderEvent;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class FormSubscriberTest extends \PHPUnit\Framework\TestCase

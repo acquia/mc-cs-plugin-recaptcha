@@ -8,9 +8,9 @@ include __DIR__.'/../../../../app/bundles/FormBundle/Views/Field/field_helper.ph
 $action   = $app->getRequest()->get('objectAction');
 $settings = $field['properties'];
 
-$formName    = str_replace('_', '', $formName);
+$formName       = str_replace('_', '', $formName);
 $hashedFormName = md5($formName);
-$formButtons = (!empty($inForm)) ? $view->render(
+$formButtons    = (!empty($inForm)) ? $view->render(
     'MauticFormBundle:Builder:actions.html.php',
     [
         'deleted'        => false,
