@@ -2,9 +2,6 @@
     "name": "koco/mautic-recaptcha-bundle",
     "description": "This plugin brings reCAPTCHA integration to mautic.",
     "type": "mautic-plugin",
-    "require": {
-        "mautic/composer-plugin": "^1.0"
-    },
     "license": "GPL-3.0-only",
     "authors": [
         {
