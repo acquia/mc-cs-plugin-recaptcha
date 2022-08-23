@@ -15,7 +15,7 @@ use Mautic\PluginBundle\Integration\AbstractIntegration;
  */
 class RecaptchaIntegration extends AbstractIntegration
 {
-    const INTEGRATION_NAME = 'Recaptcha';
+    public const INTEGRATION_NAME = 'Recaptcha';
 
     public function getName()
     {

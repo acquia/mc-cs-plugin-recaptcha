@@ -14,14 +14,13 @@ use Mautic\PluginBundle\Helper\IntegrationHelper;
 use MauticPlugin\MauticRecaptchaBundle\EventListener\FormSubscriber;
 use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 use MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient;
-use PHPUnit\Framework\MockObject\MockBuilder;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class IntegrationTest extends \PHPUnit\Framework\TestCase
 {
-    const RECAPTCHA_TESTING_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
-    const RECAPTCHA_TESTING_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
+    public const RECAPTCHA_TESTING_SITE_KEY   = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+    public const RECAPTCHA_TESTING_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
 
     /**
      * @var RecaptchaIntegration
@@ -56,7 +55,6 @@ class IntegrationTest extends \PHPUnit\Framework\TestCase
         $this->eventDispatcher
             ->method('addListener')
             ->willReturn(true);
-
 
         $this->integrationHelper = $this->getMockBuilder(IntegrationHelper::class)
             ->disableOriginalConstructor()
