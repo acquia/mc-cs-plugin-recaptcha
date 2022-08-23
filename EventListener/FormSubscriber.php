@@ -16,18 +16,18 @@ use Mautic\LeadBundle\Event\LeadEvent;
 use Mautic\LeadBundle\LeadEvents;
 use Mautic\LeadBundle\Model\LeadModel;
 use Mautic\PluginBundle\Helper\IntegrationHelper;
+use Mautic\PluginBundle\Integration\AbstractIntegration;
 use MauticPlugin\MauticRecaptchaBundle\Form\Type\RecaptchaType;
 use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 use MauticPlugin\MauticRecaptchaBundle\RecaptchaEvents;
 use MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Mautic\PluginBundle\Integration\AbstractIntegration;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class FormSubscriber implements EventSubscriberInterface
 {
-    const MODEL_NAME_KEY_LEAD = 'lead.lead';
+    public const MODEL_NAME_KEY_LEAD = 'lead.lead';
 
     /**
      * @var EventDispatcherInterface
@@ -55,7 +55,7 @@ class FormSubscriber implements EventSubscriberInterface
     private $secretKey;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $recaptchaIsConfigured = false;
 
@@ -76,7 +76,7 @@ class FormSubscriber implements EventSubscriberInterface
         $this->recaptchaClient = $recaptchaClient;
         $integrationObject     = $integrationHelper->getIntegrationObject(RecaptchaIntegration::INTEGRATION_NAME);
         $this->translator      = $translator;
-        
+
         if ($integrationObject instanceof AbstractIntegration) {
             $keys            = $integrationObject->getKeys();
             $this->siteKey   = isset($keys['site_key']) ? $keys['site_key'] : null;
@@ -124,9 +124,6 @@ class FormSubscriber implements EventSubscriberInterface
         ]);
     }
 
-    /**
-     * @param ValidationEvent $event
-     */
     public function onFormValidate(ValidationEvent $event)
     {
         if (!$this->recaptchaIsConfigured) {
@@ -137,7 +134,7 @@ class FormSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $event->failedValidation($this->translator === null ? 'reCAPTCHA was not successful.' : $this->translator->trans('mautic.integration.recaptcha.failure_message'));
+        $event->failedValidation(null === $this->translator ? 'reCAPTCHA was not successful.' : $this->translator->trans('mautic.integration.recaptcha.failure_message'));
 
         $this->eventDispatcher->addListener(LeadEvents::LEAD_POST_SAVE, function (LeadEvent $event) {
             if ($event->isNew()) {
