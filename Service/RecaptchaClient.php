@@ -10,12 +10,12 @@ namespace MauticPlugin\MauticRecaptchaBundle\Service;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Mautic\PluginBundle\Helper\IntegrationHelper;
-use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 use Mautic\PluginBundle\Integration\AbstractIntegration;
+use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 
 class RecaptchaClient
 {
-    const VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
+    public const VERIFY_URL = 'https://www.google.com/recaptcha/api/siteverify';
 
     /**
      * @var string
@@ -29,8 +29,6 @@ class RecaptchaClient
 
     /**
      * FormSubscriber constructor.
-     *
-     * @param IntegrationHelper $integrationHelper
      */
     public function __construct(IntegrationHelper $integrationHelper)
     {
@@ -43,9 +41,9 @@ class RecaptchaClient
         }
     }
 
-
     /**
      * @param string $response
+     *
      * @return bool
      */
     public function verify($response)
@@ -62,7 +60,7 @@ class RecaptchaClient
         );
 
         $response = json_decode($response->getBody(), true);
-        if (array_key_exists('success', $response) && $response['success'] === true) {
+        if (array_key_exists('success', $response) && true === $response['success']) {
             return true;
         }
 

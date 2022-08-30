@@ -13,7 +13,6 @@ return [
     'author'      => 'Konstantin Scheumann',
 
     'routes' => [
-
     ],
 
     'services' => [
@@ -36,7 +35,6 @@ return [
             ],
         ],
         'models' => [
-
         ],
         'helpers' => [
             'mautic.recaptcha.service.recaptcha_client' => [
@@ -71,6 +69,5 @@ return [
         ],
     ],
     'parameters' => [
-
     ],
 ];

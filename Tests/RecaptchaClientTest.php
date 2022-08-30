@@ -8,7 +8,6 @@
 
 namespace MauticPlugin\MauticRecaptchaBundle\Tests;
 
-use PHPUnit\Framework\MockObject\MockBuilder;
 use Mautic\PluginBundle\Helper\IntegrationHelper;
 use MauticPlugin\MauticRecaptchaBundle\Integration\RecaptchaIntegration;
 use MauticPlugin\MauticRecaptchaBundle\Service\RecaptchaClient;
