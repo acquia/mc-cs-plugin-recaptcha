@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Camapign studio Mautic recaptcha bundle plugin
+  title: Camapaign studio Mautic recaptcha bundle plugin
   description: Mautic recaptcha bundle plugin to integrate reCAPTCHA with Campaign Studio
   x-cortex-tag: acquia/mc-cs-plugin-recaptcha
   x-cortex-git:
