@@ -1,6 +1,5 @@
 <?php
 
-
 namespace MauticPlugin\MauticRecaptchaBundle\Integration;
 
 use Mautic\PluginBundle\Integration\AbstractIntegration;
