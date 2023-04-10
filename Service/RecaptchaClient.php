@@ -1,6 +1,5 @@
 <?php
 
-
 namespace MauticPlugin\MauticRecaptchaBundle\Service;
 
 use GuzzleHttp\Client as GuzzleClient;

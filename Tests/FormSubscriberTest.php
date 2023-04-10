@@ -1,6 +1,5 @@
 <?php
 
-
 namespace MauticPlugin\MauticRecaptchaBundle\Tests;
 
 use Mautic\CoreBundle\Factory\ModelFactory;

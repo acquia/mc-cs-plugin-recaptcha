@@ -1,6 +1,5 @@
 <?php
 
-
 namespace MauticPlugin\MauticRecaptchaBundle\EventListener;
 
 use Mautic\CoreBundle\Factory\ModelFactory;
