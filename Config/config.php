@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     'name'        => 'reCAPTCHA',
     'description' => 'Enables reCAPTCHA integration.',
