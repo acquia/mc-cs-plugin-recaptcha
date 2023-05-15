@@ -11,7 +11,7 @@ pipeline {
   agent {
     kubernetes {
       inheritFrom 'with-mysql'
-      yaml libraryResource('mautic-tester-74-withcomposer2.yaml')
+      yaml libraryResource('mautic-tester-80-withcomposer2.yaml')
     }
   }
   stages {
@@ -58,8 +58,11 @@ pipeline {
                     'create_custom_field_in_background' => false,
                 );" > app/config/local.php
                 composer validate --no-check-all --strict || (echo "Composer failed validation. If the lock file is out of sync you can try running 'composer update --lock'"; exit 1)
-                composer install --ansi
+                composer install --ansi --ignore-platform-reqs
             '''
+            dir("plugins/${env.SUBMODULE_NAME}") {
+              sh("composer install --ansi --ignore-platform-reqs")
+            }
           }
         }
       }
@@ -166,5 +169,5 @@ pipeline {
         postFixedScript()
       }
     }
-  }  
+  }
 }
