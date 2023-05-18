@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0"
+        "php": ">=7.4"
     },
     "scripts": {
         "csfixer": "../../bin/php-cs-fixer fix . -v --dry-run --diff --using-cache=no --config=../../.php-cs-fixer.php",
