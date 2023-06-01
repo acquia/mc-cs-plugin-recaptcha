@@ -58,10 +58,10 @@ pipeline {
                     'create_custom_field_in_background' => false,
                 );" > app/config/local.php
                 composer validate --no-check-all --strict || (echo "Composer failed validation. If the lock file is out of sync you can try running 'composer update --lock'"; exit 1)
-                composer install --ansi --ignore-platform-reqs
+                composer install --ansi
             '''
             dir("plugins/${env.SUBMODULE_NAME}") {
-              sh("composer install --ansi --ignore-platform-reqs")
+              sh("composer install --ansi")
             }
           }
         }
