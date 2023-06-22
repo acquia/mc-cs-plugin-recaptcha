@@ -34,6 +34,7 @@ pipeline {
               sh("composer config --global github-oauth.github.com ${composertoken}")
             }
             sh '''
+              git config --global --add safe.directory '*'
               ## We need all private plugins enabled during tests so their tests can run successfully
               echo "<?php
               \\$hostedParameters = array_merge(
