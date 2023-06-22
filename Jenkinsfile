@@ -11,7 +11,7 @@ pipeline {
   agent {
     kubernetes {
       inheritFrom 'with-mysql'
-      yaml libraryResource('mautic-tester-74-withcomposer2.yaml')
+      yaml libraryResource('mautic-tester-80-withcomposer2.yaml')
     }
   }
   stages {
@@ -167,5 +167,5 @@ pipeline {
         postFixedScript()
       }
     }
-  }  
+  }
 }
