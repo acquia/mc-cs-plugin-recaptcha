@@ -11,7 +11,7 @@ pipeline {
   agent {
     kubernetes {
       inheritFrom 'with-mysql'
-      yaml libraryResource('mautic-tester-74-withcomposer2.yaml')
+      yaml libraryResource('mautic-tester-80-withcomposer2.yaml')
     }
   }
   stages {
@@ -34,6 +34,7 @@ pipeline {
               sh("composer config --global github-oauth.github.com ${composertoken}")
             }
             sh '''
+              git config --global --add safe.directory '*'
               ## We need all private plugins enabled during tests so their tests can run successfully
               echo "<?php
               \\$hostedParameters = array_merge(
@@ -166,5 +167,5 @@ pipeline {
         postFixedScript()
       }
     }
-  }  
+  }
 }
