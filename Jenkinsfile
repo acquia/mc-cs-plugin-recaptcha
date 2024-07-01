@@ -111,6 +111,7 @@ pipeline {
               ansiColor('xterm') {
                 dir("plugins/${env.SUBMODULE_NAME}") {
                   sh '''
+                    export COMPOSER_ALLOW_SUPERUSER=1
                     composer csfixer
                   '''
                 }
