@@ -19,7 +19,7 @@ pipeline {
       steps {
         container('mautic-tester') {
           checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: 'development']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: true, recursiveSubmodules: true]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '1a066462-6d24-4247-bef6-1da084c8f484', url: 'git@github.com:mautic-inc/mautic-cloud.git']]]
-          sh('rm -r plugins/${SUBMODULE_NAME} || true; mkdir -p plugins/${SUBMODULE_NAME} && chmod 777 plugins/${SUBMODULE_NAME}')
+          sh('rm -r plugins/${SUBMODULE_NAME} || true; mkdir -p plugins/${SUBMODULE_NAME} && chmod 777 plugins/${SUBMODULE_NAME} && chown 1000:1000 plugins/${SUBMODULE_NAME}')
           dir("plugins/${env.SUBMODULE_NAME}") {
             checkout scm
           }
@@ -111,6 +111,7 @@ pipeline {
               ansiColor('xterm') {
                 dir("plugins/${env.SUBMODULE_NAME}") {
                   sh '''
+                    export COMPOSER_ALLOW_SUPERUSER=1
                     composer csfixer
                   '''
                 }
